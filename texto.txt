@@ -1,0 +1,54 @@
+Como funcionam uma AI
+
+Sistemas de AI só conseguem trabalhar com números:
+Por exemplo: se você passa um texto para um AI, ela vai convertê-lo em número e fazer uma possível resposta daquilo que você perguntou com base nos valores
+
+AI aprendem a com rotinas, isso significa que precisamos teiná-las e testá-las até ela entender como funciana as coisa e não apenas me mostrar respostas momorizadas
+
+Para mais precisão de uma AI, precisamos cada vez mais de uma base de dados maior, ou seja, mais infomações dequele cliente, produto etc.
+
+DADOS DE X E DADOS DE Y EM UMA AI:
+    Y - quem eu quero que AI aprenda a prever. No meu caso seria "tabela["score_crédito"]
+    X - quem eu vou usar para fazer uma previsão. No meu caso, será as demais colunas do meu dataframe, pois elas representam as demais informações dos meus clientes
+
+Depois disso, temos que termos um modelo de Ai:
+Por exemplo, um modelo que árvore de decisão
+
+DADOS DE X E Y PARA TREINO
+    X_treino - Dados que minha AI vai usar para fazer as previsões, no momento em que ela estiver aprendendo
+    Y_treino - Informações que a AI quer prever, quando ela estiver treinando
+    X_teste - Para verificar se AI esta aprendendo de fato, de forma correta
+    Y_teste - Vou comparar minhas previsões com os meus testes para ver se minha AI esta aprendendo de forma correta. Depois disso casamos os resulatados para ver o percentual de acerto da minha IA
+    No código devemos colocar em ordem:
+        x TREINO, x TESTE
+        y TREINO  y TESTE
+
+========================================================================================
+Peculiaridades do pandas:
+    O pandas reconhece um coluna de "texto" como "Object"
+    O pandas reconhece um coluna de "float" como "número flutuante"
+    O pandas reconhece um coluna de "int32" como "número inteiro pequeno sem casas decimais que foi convertido de texto para número"
+    O pandas reconhece um coluna de "int64" como "número inteiro grande sem casas decimais que foi convertido de texto para número"
+
+"non-null" em um contexto de leitura de dados com pandas.read_csv se refere a operações em que você deseja lidar apenas com valores que não sejam nulos(valores != none(vazios)), e o Pandas fornece funcionalidades para fazer isso de maneira conveniente.
+
+tabela.drop(columns) -- Joga fora informações da tabela que são passadas, nesse caso colunas
+
+==========================================================================================
+from sklearn.preprocessing import LabelEncoder
+    onde: função LabelEncoder - transformar valores texto, na minha tabela, em número, ou seja, codificar
+    sklearn.preprocessing - biblioteca
+
+codificador = LabelEncoder()
+
+tabela["profissao"] = codificador.fit_transform(tabela["profissao"])
+    onde: fit_transform() - transforma a tebela em texto, na coluna especificada, em valores numéricos
+
+from sklearn.model_selection import train_test_split
+    onde: train_test_split - Pega a nossa base de dados, embaralha e a divide em dados de treino y e dados de teste X
+    
+    Por padrão o train_test_split = divide o percentual em 70% treino e 30% teste
+    Mas pode ser difinida na função, por exemplo:
+    x_treino, x_teste, y_treino, y_teste = train_test_split(x, y, test_size=0.3, train_size=0.7)
+        onde: y_TREINO VALE 30% e x_TESTE VALE 70%
+        O bom é estar em percentuais para teste de 20% a 40% e trino de 70% a 80%, no entanto tudo vai depender da situação

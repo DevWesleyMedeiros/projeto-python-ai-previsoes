@@ -1,18 +1,18 @@
-Como funcionam uma AI
+Como funciona uma AI?
 
 Sistemas de AI só conseguem trabalhar com números:
-Por exemplo: se você passa um texto para um AI, ela vai convertê-lo em número e fazer uma possível resposta daquilo que você perguntou com base nos valores
+Por exemplo: se você passa um texto para uma AI, ela vai convertê-lo em número e fazer uma possível resposta daquilo que você perguntou com base nos valores
 
-AI aprendem a com rotinas, isso significa que precisamos teiná-las e testá-las até ela entender como funciana as coisa e não apenas me mostrar respostas momorizadas
+AI aprende com rotinas, isso significa que precisamos teiná-las e testá-las até ela entender como funciana as coisa e não apenas me mostrar respostas momorizadas
 
-Para mais precisão de uma AI, precisamos cada vez mais de uma base de dados maior, ou seja, mais infomações dequele cliente, produto etc.
+Para mais precisão de uma AI, precisamos cada vez mais de uma base de dados ampla de infomações, ou seja, mais infomações dequele cliente, produto etc.
 
 DADOS DE X E DADOS DE Y EM UMA AI:
     Y - quem eu quero que AI aprenda a prever. No meu caso seria "tabela["score_crédito"]
     X - quem eu vou usar para fazer uma previsão. No meu caso, será as demais colunas do meu dataframe, pois elas representam as demais informações dos meus clientes
 
-Depois disso, temos que termos um modelo de Ai:
-Por exemplo, um modelo que árvore de decisão
+Depois disso, temos que escolher um modelo de Ai:
+Por exemplo, um modelo de árvore de decisão
 
 DADOS DE X E Y PARA TREINO
     X_treino - Dados que minha AI vai usar para fazer as previsões, no momento em que ela estiver aprendendo
@@ -22,6 +22,20 @@ DADOS DE X E Y PARA TREINO
     No código devemos colocar em ordem:
         x TREINO, x TESTE
         y TREINO  y TESTE
+
+COMO FUNCIONA O MODELO DE AI DE ÁRVORE DE DECISÃO?
+    Basicamente ela funciona fazendo como fosses perguntas ao meu dataframe e a cada resposta, tem-se novos questionamentos com o intuito de tira o máximo de informações para projetar uma decisão coerente, criando assim uma árvore
+    Árvore de Decisão:
+    Uma árvore de decisão é um modelo de aprendizado de máquina que funciona de maneira semelhante a um fluxograma de decisões. O objetivo principal é dividir o conjunto de dados em categorias ou classes com base nas características dos dados. A árvore é construída dividindo o conjunto de dados em subconjuntos menores, usando as características que são mais informativas para a tarefa em questão. Cada nó na árvore representa uma pergunta ou condição sobre uma característica específica dos dados. À medida que você percorre a árvore, responde a essas perguntas até chegar a uma folha, que representa uma decisão ou uma classe.
+    O processo de construção da árvore de decisão envolve a seleção das características mais relevantes, a divisão dos dados em subconjuntos com base nessas características e a repetição desse processo até que critérios de parada sejam atendidos (por exemplo, uma profundidade máxima da árvore ou um número mínimo de amostras em um nó). A árvore resultante pode ser usada para tomar decisões ou fazer previsões com base nos novos dados.
+
+COMO FUNCIONA O MODELO DE IA DE KNN?
+    O modelo de knn funciona de forma que a AI divide uma área com um determinado tipo informação e outras informações que estiverem próximas a essas áreas entrarão na mesma ideia da informação principal
+    KNN (k-nearest neighbors):
+    O algoritmo KNN é um modelo de aprendizado de máquina baseado em instâncias que classifica um ponto de dados com base na maioria das classes das k instâncias (pontos de dados) mais próximas a ele em um espaço multidimensional. O valor de k é um hiperparâmetro que você define, e ele determina quantos vizinhos mais próximos serão considerados ao fazer uma previsão.
+    O funcionamento do KNN é bastante simples. Quando você fornece um novo ponto de dados para classificação, o modelo calcula a distância entre esse ponto e todos os outros pontos de dados no conjunto de treinamento. Ele então seleciona os k pontos mais próximos ao novo ponto. A classe mais comum entre esses k vizinhos é atribuída ao novo ponto como a classe prevista.
+    Portanto, o KNN não constrói um modelo explícito, como uma árvore de decisão. Em vez disso, ele armazena todos os pontos de dados de treinamento e calcula as classificações com base na proximidade. É importante escolher um valor adequado para k, pois isso pode afetar a qualidade das previsões.
+    Em resumo, enquanto suas explicações iniciais fornecem uma ideia geral de como esses modelos funcionam, eles são modelos mais complexos em detalhes, e há mais considerações e etapas envolvidas na construção e utilização eficaz deles.
 
 ========================================================================================
 Peculiaridades do pandas:
@@ -36,7 +50,7 @@ tabela.drop(columns) -- Joga fora informações da tabela que são passadas, nes
 
 ==========================================================================================
 from sklearn.preprocessing import LabelEncoder
-    onde: função LabelEncoder - transformar valores texto, na minha tabela, em número, ou seja, codificar
+    onde: função LabelEncoder - transforma valores texto, na minha tabela, em número, ou seja, codificar
     sklearn.preprocessing - biblioteca
 
 codificador = LabelEncoder()
@@ -47,8 +61,12 @@ tabela["profissao"] = codificador.fit_transform(tabela["profissao"])
 from sklearn.model_selection import train_test_split
     onde: train_test_split - Pega a nossa base de dados, embaralha e a divide em dados de treino y e dados de teste X
     
-    Por padrão o train_test_split = divide o percentual em 70% treino e 30% teste
+    Por padrão o train_test_split = divide o percentual em 70% treino e 30% teste.
     Mas pode ser difinida na função, por exemplo:
-    x_treino, x_teste, y_treino, y_teste = train_test_split(x, y, test_size=0.3, train_size=0.7)
+    x_treino, x_teste, y_treino, y_teste = train_test_split(x, y, test_size=0.7, train_size=0.3)
         onde: y_TREINO VALE 30% e x_TESTE VALE 70%
         O bom é estar em percentuais para teste de 20% a 40% e trino de 70% a 80%, no entanto tudo vai depender da situação
+
+
+
+Usar uma ferramenta joblib para perpetuar uma IA

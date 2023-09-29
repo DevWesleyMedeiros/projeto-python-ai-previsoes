@@ -64,8 +64,19 @@ from sklearn.model_selection import train_test_split
     Por padrão o train_test_split = divide o percentual em 70% treino e 30% teste.
     Mas pode ser difinida na função, por exemplo:
     x_treino, x_teste, y_treino, y_teste = train_test_split(x, y, test_size=0.7, train_size=0.3)
-        onde: y_TREINO VALE 30% e x_TESTE VALE 70%
-        O bom é estar em percentuais para teste de 20% a 40% e trino de 70% a 80%, no entanto tudo vai depender da situação
+    onde: y_TREINO VALE 30% e x_TESTE VALE 70%
+    O bom é estar em percentuais para teste de 20% a 40% e trino de 70% a 80%, no entanto tudo vai depender da situação
+from sklearn.metrics import accuracy_score
+    onde: A acurácia é uma métrica comum usada para avaliar o desempenho de modelos de classificação, e ela mede a proporção de previsões corretas em relação ao total de previsões.
+    
+
+
+
+
+
+
+
+
 
 
 
